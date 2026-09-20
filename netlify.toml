@@ -1,0 +1,10 @@
+[build]
+  publish = "."
+
+# A private pitch, not public marketing. Keep it out of search engines.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

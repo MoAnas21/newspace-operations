@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="An outside read on three areas of NewSpace operations — one autonomy platform, proof in the field, and a commercial line that balances the research — by Dhamini R. Nijgal.">
+<meta name="author" content="Dhamini R. Nijgal">
+<meta name="theme-color" content="#060910">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23060910'/%3E%3Crect x='7' y='10' width='18' height='1.6' fill='%2374BEE6'/%3E%3Crect x='7' y='15.2' width='18' height='1.6' fill='%232E5C78'/%3E%3Crect x='7' y='20.4' width='18' height='1.6' fill='%23E9A644'/%3E%3C/svg%3E">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Three Areas of Operation">
+<meta property="og:description" content="An outside read on three areas of NewSpace operations — one autonomy platform, proof in the field, and a commercial line that balances the research — by Dhamini R. Nijgal.">
+<meta property="og:image" content="social-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Three Areas of Operation">
+<meta name="twitter:description" content="An outside read on three areas of NewSpace operations — one autonomy platform, proof in the field, and a commercial line that balances the research — by Dhamini R. Nijgal.">
+<meta name="twitter:image" content="social-card.png">
+
+<style>
+  html{background:#060910}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+<title>Three Areas of Operation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200;0,6..72,300;0,6..72,400;1,6..72,300&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root{
+    /* Committed single-theme design: stratospheric dark. Every colour painted explicitly. */
+    --void:#060910;
+    --deck:#0B111C;
+    --deck-2:#0E1624;
+    --ink:#E7EDF5;
+    --dim:#8B9BB2;
+    --dimmer:#5E6E85;
+    --cold:#74BEE6;
+    --cold-deep:#2E5C78;
+    --warm:#E9A644;
+    --warm-deep:#6B4A18;
+    --line:rgba(116,190,230,.15);
+    --line-soft:rgba(116,190,230,.08);
+
+    --rail:56px;
+    --measure:34rem;
+
+    color-scheme:dark;
+
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* Ambient: thin horizon glow at the top of the page, as seen from altitude. */
+  .sky{
+    position:fixed;
+    inset:0 0 auto 0;
+    height:70vh;
+    pointer-events:none;
+    z-index:0;
+    background:
+      radial-gradient(120% 70% at 50% -18%, rgba(116,190,230,.16) 0%, rgba(116,190,230,.05) 38%, rgba(6,9,16,0) 68%),
+      radial-gradient(90% 50% at 78% -8%, rgba(233,166,68,.08) 0%, rgba(6,9,16,0) 60%);
+  }
+
+  .wrap{
+    position:relative;
+    z-index:1;
+    max-width:1060px;
+    margin-inline:auto;
+    padding-inline:clamp(20px,5vw,60px);
+  }
+
+  /* ---------- shared type roles ---------- */
+  .eyebrow{
+    font-family:'IBM Plex Mono',ui-monospace,monospace;
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--cold);
+    margin:0;
+  }
+  .eyebrow.warm{color:var(--warm)}
+  .eyebrow.mute{color:var(--dimmer)}
+
+  h1,h2,h3{font-family:'Newsreader',Georgia,serif;font-weight:300;text-wrap:balance;margin:0}
+
+  p{margin:0}
+  .prose p + p{margin-top:1.1em}
+  .prose{max-width:var(--measure);color:var(--ink);font-size:16.5px;line-height:1.72}
+
+  a{color:var(--cold);text-decoration:none}
+  a:focus-visible{outline:2px solid var(--warm);outline-offset:3px;border-radius:2px}
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    display:flex;flex-wrap:wrap;gap:8px 28px;align-items:baseline;justify-content:space-between;
+    padding-block:26px 0;
+    font-family:'IBM Plex Mono',ui-monospace,monospace;
+    font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--dimmer);
+  }
+  .masthead b{color:var(--ink);font-weight:500;letter-spacing:.1em}
+
+  /* ---------- hero ---------- */
+  .hero{padding-block:clamp(64px,13vw,132px) clamp(48px,8vw,80px)}
+  .hero .eyebrow{margin-bottom:26px}
+  .hero h1{
+    font-size:clamp(2.45rem,7.4vw,4.6rem);
+    line-height:1.04;
+    letter-spacing:-.02em;
+    max-width:15ch;
+  }
+  .hero h1 .lift{color:var(--cold)}
+  .hero h1 .warm{color:var(--warm);font-style:italic;font-weight:200}
+  .hero .standfirst{
+    margin-top:32px;
+    max-width:40rem;
+    font-size:clamp(1rem,2.2vw,1.14rem);
+    line-height:1.68;
+    color:var(--dim);
+  }
+  .hero .standfirst em{color:var(--ink);font-style:normal;font-weight:500}
+
+  /* load sequence — completes on load, nothing waits on scroll */
+  .rise{animation:rise .9s cubic-bezier(.16,.84,.44,1) both}
+  .rise:nth-child(1){animation-delay:.05s}
+  .rise:nth-child(2){animation-delay:.16s}
+  .rise:nth-child(3){animation-delay:.3s}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  /* ---------- index ---------- */
+  .index{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+  }
+  .index a{
+    display:block;
+    padding:24px 26px 26px 0;
+    border-left:1px solid var(--line-soft);
+    padding-left:26px;
+    color:var(--dim);
+    transition:color .25s ease,background .25s ease;
+  }
+  .index a:first-child{border-left:0;padding-left:0}
+  .index a:hover{color:var(--ink)}
+  .index .n{
+    display:block;
+    font-family:'IBM Plex Mono',ui-monospace,monospace;
+    font-size:11px;letter-spacing:.2em;color:var(--cold-deep);margin-bottom:10px;
+  }
+  .index a:hover .n{color:var(--cold)}
+  .index .t{font-family:'Newsreader',Georgia,serif;font-size:1.12rem;line-height:1.3;display:block}
+
+  /* ---------- areas + spine ---------- */
+  .areas{position:relative;padding-block:clamp(60px,10vw,110px) 0}
+  .spine{
+    position:absolute;left:0;top:0;bottom:0;width:1px;
+    background:linear-gradient(to bottom,rgba(116,190,230,0),var(--line) 6%,var(--line) 94%,rgba(116,190,230,0));
+  }
+  .spine i{
+    position:absolute;left:0;top:0;width:1px;height:0;display:block;
+    background:linear-gradient(to bottom,rgba(233,166,68,.15),var(--warm));
+  }
+
+  .area{padding-left:var(--rail);padding-bottom:clamp(64px,11vw,118px);position:relative;min-width:0}
+
+  .area-head{margin-bottom:38px}
+  .area-head .eyebrow{margin-bottom:18px}
+  .area h2{
+    font-size:clamp(1.85rem,4.6vw,3rem);
+    line-height:1.12;
+    letter-spacing:-.015em;
+    max-width:19ch;
+  }
+
+  .panels{display:grid;gap:1px;background:var(--line-soft);border-block:1px solid var(--line-soft);min-width:0}
+  .panel{background:var(--void);padding:28px 0 30px;position:relative;min-width:0}
+  .panel:first-child{padding-top:26px}
+  .panel .label{
+    font-family:'IBM Plex Mono',ui-monospace,monospace;
+    font-size:10.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--dimmer);margin-bottom:14px;display:block;
+  }
+  .panel.is-it .label{color:var(--dimmer)}
+  .panel.is-why .label{color:var(--cold)}
+
+  /* The contribution panel is the one warm thing in each area — a branch off the spine. */
+  .panel.is-bring{background:var(--deck);padding-inline:26px;margin-inline:-26px}
+  .panel.is-bring .label{color:var(--warm)}
+  .panel.is-bring .prose{color:#F2F0EA}
+  .panel.is-bring::before{
+    content:"";position:absolute;
+    left:calc(-1 * var(--rail) - 26px);
+    top:34px;width:var(--rail);height:1px;background:var(--warm);opacity:.65;
+  }
+  .panel.is-bring::after{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--warm);opacity:.85;
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding-block:30px 46px;
+    display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;
+    font-family:'IBM Plex Mono',ui-monospace,monospace;
+    font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--dimmer);
+  }
+
+  /* ---------- narrow ---------- */
+  @media (max-width:860px){
+    .index{grid-template-columns:1fr}
+    .index a{border-left:0;padding-left:0;border-top:1px solid var(--line-soft);padding-block:20px}
+    .index a:first-child{border-top:0}
+  }
+  @media (max-width:640px){
+    :root{--rail:0px}
+    .spine{display:none}
+    .area{padding-left:0}
+    .panel.is-bring{margin-inline:calc(-1 * clamp(20px,5vw,60px));padding-inline:clamp(20px,5vw,60px)}
+    .panel.is-bring::before{display:none}
+    .hero{padding-block:52px 44px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .rise{animation:none}
+    *{transition-duration:.01ms!important}
+  }
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <div class="masthead">
+    <span><b>Dhamini R. Nijgal</b> — Staff Technical Program Manager</span>
+  </div>
+
+  <header class="hero">
+    <p class="eyebrow rise">An outside read — three areas of operations</p>
+    <h1 class="rise">One autonomy platform. <span class="lift">Proven in the field.</span> <span class="warm">Cleared beyond defence.</span></h1>
+    <p class="standfirst rise">Three things stand out, read off the airframe portfolio, what competitors have already proven, and the ambition sitting in the civil programmes. <em>All three are delivery problems, not invention problems.</em></p>
+  </header>
+
+  <nav class="index" aria-label="The three areas">
+    <a href="#a1"><span class="n">01</span><span class="t">One autonomy platform beneath every airframe</span></a>
+    <a href="#a2"><span class="n">02</span><span class="t">From flight test to proven in the field</span></a>
+    <a href="#a3"><span class="n">03</span><span class="t">A commercial line that balances the research</span></a>
+  </nav>
+
+  <div class="areas">
+    <div class="spine" aria-hidden="true"><i id="spinefill"></i></div>
+
+    <!-- ============ 01 ============ -->
+    <section class="area" id="a1">
+      <div class="area-head">
+        <p class="eyebrow">Area 01 — The foundation</p>
+        <h2>One autonomy platform beneath every airframe</h2>
+      </div>
+
+      <div class="panels">
+        <div class="panel is-it">
+          <span class="label">What it is</span>
+          <div class="prose"><p>Treat autonomy as a platform rather than a per-programme build: perception, navigation, coordination and mission logic developed once as a shared engine, with adapters per airframe. Sheshnaag, Abhimanyu, HAPS and the civil vehicles draw on one foundation, and a new airframe plugs into it rather than starting from the ground up.</p></div>
+
+        </div>
+
+        <div class="panel is-why">
+          <span class="label">Why it matters</span>
+          <div class="prose"><p>Three returns that compound. Each new airframe costs a fraction of the last, because the hard part exists. Vehicles on a joint mission coordinate through one shared layer, so adding a vehicle is configuration rather than a project. And flight data from any airframe trains the engine all of them run on — hardening proven once holds everywhere.</p></div>
+        </div>
+
+        <div class="panel is-bring">
+          <span class="label">What I'd bring</span>
+          <div class="prose"><p>This is the shape of problem I run. At Avathon, one platform carries five concurrent programmes across ten-plus enterprise accounts — asset performance, visual AI, inventory, supply chain, trade compliance — and they compound because a shared data and knowledge layer sits beneath all of them: what the visual AI sees on the floor informs what maintenance predicts, which informs what supply chain routes. The call I make daily is the one this turns on: what belongs in the shared foundation, and what belongs to the individual mission.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 02 ============ -->
+    <section class="area" id="a2">
+      <div class="area-head">
+        <p class="eyebrow">Area 02 — The proof</p>
+        <h2>From flight test to proven in the field</h2>
+      </div>
+
+      <div class="panels">
+        <div class="panel is-it">
+          <span class="label">What it is</span>
+          <div class="prose"><p>The discipline that carries a platform from first flight to fielded and operationally trusted: instrumented deployments, a data loop turning every mission into training input, autonomy that ships updates rather than freezing at handover, and hardening against active jamming proven in simulation before it is met for real.</p></div>
+        </div>
+
+        <div class="panel is-why">
+          <span class="label">Why it matters</span>
+          <div class="prose"><p>Operational proof is the currency defence customers buy in. Shield AI's international credibility came from V-BAT flying real sorties under live electronic warfare and feeding that back into its autonomy — a pipeline decision made early, not a research breakthrough. Sheshnaag has flown. Everything after first flight is a delivery timeline, and the data only compounds if you instrument before you deploy.</p></div>
+        </div>
+
+        <div class="panel is-bring">
+          <span class="label">What I'd bring</span>
+          <div class="prose"><p>Everything between a first flight and a fielded system is delivery: a test campaign sequenced against engineering capacity, deployments instrumented so the data comes back usable, and a release rhythm that lets autonomy keep improving after handover rather than freezing at it. That is the structure I build — the plan, the cadence, the readiness gates, and the reporting that keeps engineering, leadership and the customer seeing the same picture. I have run it as both Technical Manager and Programme Manager, so the trade-off calls are mine to make rather than mine to relay.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 03 ============ -->
+    <section class="area" id="a3">
+      <div class="area-head">
+        <p class="eyebrow">Area 03 — The counterweight</p>
+        <h2>A commercial line that balances the research</h2>
+      </div>
+
+      <div class="panels">
+        <div class="panel is-it">
+          <span class="label">What it is</span>
+          <div class="prose"><p>A non-defence line that earns on its own terms — air taxis and air ambulances, air couriers and medical logistics, disaster response, infrastructure inspection, stratospheric telecom relay. In an organisation that is roughly 70% R&amp;D, this is the counterweight: work that funds the research rather than waiting on it, sold to customers who buy on commercial timelines.</p></div>
+        </div>
+
+        <div class="panel is-why">
+          <span class="label">Why it matters</span>
+          <div class="prose"><p>Commercial airspace is won on certification, not on capability. Carrying people or cargo over populated ground means type certification, DGCA and international airworthiness approval, BVLOS clearance, documented safety cases, failure-mode analysis and a test campaign that stands up to a regulator. That is the real barrier between NRT's autonomy and these markets — and it is a documentation and test-discipline problem, not a research one.</p></div>
+        </div>
+
+        <div class="panel is-bring">
+          <span class="label">What I'd bring</span>
+          <div class="prose"><p>Standing up a commercial line is a strategy problem and a delivery problem at once. Which missions to enter first, what the offer is — airframe, autonomy licensed into another manufacturer's platform, or a service — and how the money works: SOW structure, milestone terms, Opex and deferred-Opex treatment, revenue recognition. Then certification has to actually land, which means a test campaign sequenced against capacity and evidence produced in the order a regulator reads it. I have carried both sides across ten-plus enterprise accounts with full retention, and I know these buyers — Avathon's customers are this market.</p></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <span>Dhamini R. Nijgal</span>
+    <span><a href="https://www.linkedin.com/in/dhamini-nijgal/" target="_blank" rel="noopener">linkedin.com/in/dhamini-nijgal</a></span>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var spine = document.getElementById('spinefill');
+    var areas = document.querySelector('.areas');
+    if(!spine || !areas) return;
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ spine.style.height = '100%'; return; }
+
+    var ticking = false;
+
+    function paint(){
+      ticking = false;
+      if(window.innerWidth <= 640){ spine.style.height = '0px'; return; }
+      var box = areas.getBoundingClientRect();
+      var anchor = window.innerHeight * 0.62;
+      var progress = (anchor - box.top) / box.height;
+      if(progress < 0) progress = 0;
+      if(progress > 1) progress = 1;
+      spine.style.height = (progress * box.height) + 'px';
+    }
+
+    function onScroll(){
+      if(!ticking){ ticking = true; window.requestAnimationFrame(paint); }
+    }
+
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', onScroll);
+    paint();
+  })();
+</script>
+</body>
+</html>
